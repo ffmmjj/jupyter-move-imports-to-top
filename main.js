@@ -20,6 +20,10 @@ define([
             });
         }
 
+        function isCodeCell(cell) {
+            return cell.cell_type === 'code';
+        }
+
         // Run on start
         function loadIpythonExtension() {
             Jupyter.keyboard_manager.command_shortcuts.add_shortcut('o', {
@@ -34,7 +38,9 @@ define([
                     const importsFound = [];
                     const cellsToDelete = [];
 
-                    cells.slice(1).forEach( function (cell, cellIndex) {
+                    cells.slice(1)
+                        .filter(isCodeCell)
+                        .forEach( function (cell, cellIndex) {
                         const cellContents = cell.get_text();
                         const newCellContents = [];
 
