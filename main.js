@@ -55,7 +55,12 @@ define([
                         }
                     });
 
-                    const newImportsList = firstCell.get_text().split(/[\r\n]+/).concat(importsFound);
+                    let firstCellContentsLines = firstCell.get_text().split(/[\r\n]+/);
+                    if (firstCellContentsLines[0] === '') {
+                        // Remove first line if it is empty
+                        firstCellContentsLines = firstCellContentsLines.slice(1)
+                    }
+                    const newImportsList = firstCellContentsLines.concat(importsFound);
                     firstCell.set_text(newImportsList.join('\n'));
 
                     Jupyter.notebook.delete_cells(cellsToDelete);
