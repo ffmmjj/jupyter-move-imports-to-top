@@ -1,8 +1,8 @@
 define([
     'base/js/namespace',
     'base/js/events'
-    ], function(Jupyter, events) {
-        function is_imports_only_cell(cell) {
+    ], function(Jupyter, _) {
+        function isImportsOnlyCell(cell) {
             const cell_contents = cell.get_text();
 
             return cell_contents.split(/\r?\n/).every(function (line) {
@@ -10,7 +10,7 @@ define([
             });
         }
 
-        function create_empty_topmost_cell() {
+        function createEmptyTopmostCell() {
             return Jupyter.notebook.insert_cell_at_index('code', 0)
         }
 
@@ -21,13 +21,13 @@ define([
         }
 
         // Run on start
-        function load_ipython_extension() {
+        function loadIpythonExtension() {
             Jupyter.keyboard_manager.command_shortcuts.add_shortcut('o', {
                 help : 'move imports to topmost cell',
                 help_index : 'zz',
                 handler : function (event) {
-                    if (!is_imports_only_cell(Jupyter.notebook.get_cell(0))) {
-                        create_empty_topmost_cell();
+                    if (!isImportsOnlyCell(Jupyter.notebook.get_cell(0))) {
+                        createEmptyTopmostCell();
                     }
                     const cells = Jupyter.notebook.get_cells();
                     const firstCell = cells[0];
@@ -70,6 +70,6 @@ define([
             );
         }
         return {
-            load_ipython_extension: load_ipython_extension
+            load_ipython_extension: loadIpythonExtension
         };
 });
