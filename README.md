@@ -3,7 +3,7 @@ Move imports to topmost cell
 This extension finds imports scattered throughout the notebook and moves them to the topmost cell (or creates a topmost cell containg only imports if it doesn't exist yet).
 
 ## Installation
-First, make sure that you have the [jupyter_nbcontrib_extensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html) add-ons installed.
+First, make sure that you have the [jupyter_nbcontrib_extensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html) add-on installed.
 
 Then do
 ```
